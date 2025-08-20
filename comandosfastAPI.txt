@@ -1,0 +1,10 @@
+py -m venv env
+cd env
+cd Scripts
+activate
+cd ..
+pip install "fastapi[standard]"
+cd ..
+pip freeze > requirements.txt
+pip freeze -r > .\requirements.txt
+
