@@ -1,10 +1,22 @@
 from fastapi import FastAPI, HTTPException, status, Response, Depends
 from models import personagemToyStory
 from typing import Optional, Any
+from routes import curso_router, usuario_router
+import requests
 
 
 
 app = FastAPI(title="API dos personagens de Toy Story - DS18", version='0.0.1', description="API realizada com o Wilson para aprender FastAPI")
+
+app.include_router(curso_router.router, tags=["Cursos"])
+app.include_router(usuario_router.router, tags=["Usuários"])
+
+@app.get("/pokemon/{name}")
+def get_pokemon(name: str):
+    response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{name}")
+    if response.status_code == 200:
+        return response.json()
+    return {"Message": "Pokemon not found"}
 
 def fake_db():
     try:

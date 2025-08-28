@@ -1,0 +1,9 @@
+# Ambiente virtual
+env/
+__pycache__/
+*.pyc
+.vscode/
+*.pyo
+*.pyd
+*.swp
+.DS_Store
